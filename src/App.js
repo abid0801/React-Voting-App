@@ -1,56 +1,70 @@
 import React from 'react';
-import { addVoter } from "./addVoter";
+// import { addCandidate } from './components/addCandidate';
 
-// const people = [
-//   { 
-//     id:1,
-//     name: 'James',
-//     age: 31,
-//   },
-//   { 
-//     id:2,
-//     name: 'John',
-//     age: 45,
-//   },
-//   { 
-//     id:3,
-//     name: 'Paul',
-//     age: 65,
-//   },
-//   { 
-//     id:5,
-//     name: 'Ringo',
-//     age: 49,
-//   },
-//   {
-//     id:6,
-//     name: 'George',
-//     age: 34,
-//   }
-// ];
+import Header from './utilities/Header'
+import './App.css';
+import PeopleData from './data';
+import ElectionForm from './components/ElectionForm/ElectionForm';
+
+
 
 function App() {
 
-  // const addForm =(id) => {
+  // const [chair,setChair]= React.useState(0);
+  // // const[viceChair,setViceChair]=React.useState([]);
+  // // const[secretary,setSecretary]=React.useState([]);
+  // // const[membershipch,setMembershipsch]=React.useState([]);
+  // const id=0;
 
-  //   return(
-  //   people.filter(person => person.id ===id).map(filteredPerson => (
-  //     <li>
-  //       {filteredPerson.name}
-  //     </li>
-  //   ))
-  //   )
-      
+  // const chairHandler =id=>{
+  //   let setValue=id.target.value;
+  //   setChair(setValue);
+  //   console.log(setValue);
+  // }
+  // const viceChairHandler =()=>{
+
+  // }
+  // const secretaryHandler =()=>{
+
+  // }
+  // const memberChcHandler =()=>{
+
   // }
 
- 
-    
 
-  
+
+
+  let chairData = PeopleData.filter(person => person.post ==="chair").map(filteredPerson => (
+    filteredPerson.name
+  ));
+  console.log(chairData);
+
+  let viceChairData =PeopleData.filter(person => person.post ==="viceChair").map(filteredPerson => (
+    filteredPerson.name));
+    console.log(viceChairData);
+
+  let secretaryData =PeopleData.filter(person => person.post ==="secretary").map(filteredPerson => (
+    filteredPerson.name));
+    console.log(secretaryData);
+
+    let treasurerData =PeopleData.filter(person => person.post ==="treasurer").map(filteredPerson => (
+      filteredPerson.name));
+      console.log(treasurerData);
+
+
+
 
   return (
-    <div>
-      {addVoter(6)}
+    <div className = "App">
+       
+    <Header/>
+
+      <ElectionForm position={"chair"}  firstCandidate={chairData[0]} secondCandidate={chairData[1]}></ElectionForm>
+      <ElectionForm position={"viceChair"}  firstCandidate={viceChairData[0]} secondCandidate={viceChairData[1]} thirdCandidate={viceChairData[2]}></ElectionForm>
+      <ElectionForm position={"secretary"}  firstCandidate={secretaryData[0]} secondCandidate={secretaryData[1]} thirdCandidate={secretaryData[2]}></ElectionForm>
+      <ElectionForm position={"treasurer"}  firstCandidate={treasurerData[0]} secondCandidate={treasurerData[1]} thirdCandidate={treasurerData[2]}></ElectionForm>
+      
+      
     </div>
   );
 }
