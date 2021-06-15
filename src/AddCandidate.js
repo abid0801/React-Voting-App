@@ -28,7 +28,7 @@ const AddCandidate =(props) => {
     <form>
 
     <h1>{props.position}</h1>
-    <input type="radio" id="{props.id}" name="{props.name}" value="{props.name}" onChange={()=>props.clickHandler(props.name)}></input>
+    <input type="radio" id="{props.id}" name="{props.name}" value="{props.name}" onChange={()=>props.changeHandler(props.name)}></input>
     <label for="{props.name}">{props.name}</label><br></br>   
   
     </form>

@@ -3,7 +3,18 @@ import AddCandidate from './AddCandidate';
 import Header from './utilities/Header'
 import './App.css';
 import PeopleData from './data';
-
+// import Button from '@material-ui/core/Button';
+// import { makeStyles } from '@material-ui/core/styles';
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     '& .MuiTextField-root': {
+//       margin: theme.spacing(1),
+//     },
+//   },
+//   button: {
+//     margin: theme.spacing(1),
+//   }
+// }))
 // import ElectionForm from './components/ElectionForm/ElectionForm';
 
 
@@ -12,7 +23,7 @@ import PeopleData from './data';
 function App() {
 
 
-  const [formData, setFormData]= React.useState({isAgree:false , voterName:""})
+  const [formData, setFormData]= React.useState({voterName:""})
   // const [chair,setChair]= React.useState(0);
   // // const[viceChair,setViceChair]=React.useState([]);
   // // const[secretary,setSecretary]=React.useState([]);
@@ -56,6 +67,11 @@ function App() {
       filteredPerson));
       console.log(treasurerData);
 
+  const add=(event)=>{
+
+    return 1
+  }
+
     
   const handleFromData =(event)=>{
 
@@ -72,7 +88,7 @@ function App() {
 
 
   return (
-    <form>
+    <form onSubmit={add}>
 
 
     <div className = "App">
@@ -98,7 +114,7 @@ function App() {
         
               } */}
         <h3>Vote for the position of Chair</h3>
-        {chairData.map(item=><AddCandidate  name={item.name} clickHandler={handleFromData}></AddCandidate>)}
+        {chairData.map(item=><AddCandidate  name={item.name} changeHandler={handleFromData}></AddCandidate>)}
 
         <h3>Vote for the position of Vice Chair</h3>
         {viceChairData.map(item=><AddCandidate  name={item.name}></AddCandidate>)}
@@ -111,6 +127,12 @@ function App() {
           
 
     </div>
+    <div class="container">
+         <div class="center">
+             <button onClick={add}>Submit vote</button>
+         </div>
+    </div>
+    {/* <Button variant="contained" type="submit" color="primary" onClick={add}>Submit Vote</Button> */}
     </form>
   );
 }
