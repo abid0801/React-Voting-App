@@ -11,6 +11,7 @@ export default function ElectionForm(props) {
                  {props.position==="chair" && <div>
                         <p></p>
                         <p>First Choice</p>
+                         
                         <form>
                         <input type="radio" id="{props.chairFirstCandidate}" name="{props.name}" value="{props.firstCandidate}"></input>
                         <label for="{props.firstCandidate}">{props.firstCandidate}</label><br></br>   

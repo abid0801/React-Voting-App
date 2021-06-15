@@ -1,15 +1,18 @@
-import React from 'react';
-// import { addCandidate } from './components/addCandidate';
-
+import React,{useState} from 'react';
+import AddCandidate from './AddCandidate';
 import Header from './utilities/Header'
 import './App.css';
 import PeopleData from './data';
-import ElectionForm from './components/ElectionForm/ElectionForm';
+
+// import ElectionForm from './components/ElectionForm/ElectionForm';
+
 
 
 
 function App() {
 
+
+  const [formData, setFormData]= React.useState({isAgree:false , voterName:""})
   // const [chair,setChair]= React.useState(0);
   // // const[viceChair,setViceChair]=React.useState([]);
   // // const[secretary,setSecretary]=React.useState([]);
@@ -31,41 +34,84 @@ function App() {
 
   // }
 
+//  var chairCounter=0;
+
 
 
 
   let chairData = PeopleData.filter(person => person.post ==="chair").map(filteredPerson => (
-    filteredPerson.name
+    filteredPerson
   ));
   console.log(chairData);
 
   let viceChairData =PeopleData.filter(person => person.post ==="viceChair").map(filteredPerson => (
-    filteredPerson.name));
+    filteredPerson));
     console.log(viceChairData);
 
   let secretaryData =PeopleData.filter(person => person.post ==="secretary").map(filteredPerson => (
-    filteredPerson.name));
+    filteredPerson));
     console.log(secretaryData);
 
     let treasurerData =PeopleData.filter(person => person.post ==="treasurer").map(filteredPerson => (
-      filteredPerson.name));
+      filteredPerson));
       console.log(treasurerData);
 
+    
+  const handleFromData =(event)=>{
+
+    // const target = event.target
+    // const name = target.name
+    // const value = target.value
+    
+    // setFormData({...formData, [name]: value})
+    setFormData(event.currentTarget.name.value)
+    console.log(event.currentTarget.name.value)
+
+  }
 
 
 
   return (
+    <form>
+
+
     <div className = "App">
        
     <Header/>
 
-      <ElectionForm position={"chair"}  firstCandidate={chairData[0]} secondCandidate={chairData[1]}></ElectionForm>
+       {/* <ElectionForm position={"chair"}  firstCandidate={chairData[0]} secondCandidate={chairData[1]}></ElectionForm>
       <ElectionForm position={"viceChair"}  firstCandidate={viceChairData[0]} secondCandidate={viceChairData[1]} thirdCandidate={viceChairData[2]}></ElectionForm>
       <ElectionForm position={"secretary"}  firstCandidate={secretaryData[0]} secondCandidate={secretaryData[1]} thirdCandidate={secretaryData[2]}></ElectionForm>
-      <ElectionForm position={"treasurer"}  firstCandidate={treasurerData[0]} secondCandidate={treasurerData[1]} thirdCandidate={treasurerData[2]}></ElectionForm>
+      <ElectionForm position={"treasurer"}  firstCandidate={treasurerData[0]} secondCandidate={treasurerData[1]} thirdCandidate={treasurerData[2]}></ElectionForm>  */}
       
-      
+       
+        {/* {chairData.map(item=>
+        {
+          if (chairCounter===0)
+          {
+              <h1> Please Vote for {item.post}</h1>
+          }
+        <AddCandidate  name={item.name}></AddCandidate>
+        chairCounter++;         
+        }
+           )
+        
+              } */}
+        <h3>Vote for the position of Chair</h3>
+        {chairData.map(item=><AddCandidate  name={item.name} clickHandler={handleFromData}></AddCandidate>)}
+
+        <h3>Vote for the position of Vice Chair</h3>
+        {viceChairData.map(item=><AddCandidate  name={item.name}></AddCandidate>)}
+
+        <h3>Vote for the position of Secretary</h3>
+        {secretaryData.map(item=><AddCandidate  name={item.name}></AddCandidate>)}
+
+        <h3>Vote for the position of Treasurer</h3>
+        {treasurerData.map(item=><AddCandidate  name={item.name}></AddCandidate>)}
+          
+
     </div>
+    </form>
   );
 }
 
